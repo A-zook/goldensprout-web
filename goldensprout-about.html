@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - GoldenSprout Naturals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="icon" href="./logo/favicon.ico" sizes="any">
+  <link rel="icon" href="./logo/goldensprout-favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./logo/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* ─── DESIGN TOKENS ─────────────────────────────────────────── */
+    :root {
+      --brown-deep:    #3B2314;
+      --brown-dark:    #2C1810;
+      --brown-warm:    #5C3A1E;
+      --gold-warm:     #C8962C;
+      --gold-medium:   #D4A843;
+      --gold-light:    #E8C46A;
+      --cream:         #F5F0E8;
+      --ivory:         #FFFDF8;
+      --white:         #FFFFFF;
+
+      /* Gradient tokens pulled from brand assets */
+      --grad-gold:     linear-gradient(135deg, #C8962C 0%, #E8C46A 50%, #C8962C 100%);
+      --grad-brown:    linear-gradient(160deg, #3B2314 0%, #5C3A1E 100%);
+      --grad-hero:     linear-gradient(180deg, #F5F0E8 0%, #EDE5D4 100%);
+      --grad-bar:      linear-gradient(90deg, transparent, #C8962C 30%, #E8C46A 50%, #C8962C 70%, transparent);
+
+      --radius-sm:  6px;
+      --radius-md:  12px;
+      --radius-lg:  24px;
+      --radius-pill: 999px;
+
+      --section-pad: clamp(64px, 9vw, 120px) clamp(20px, 6vw, 80px);
+      --max-w:       1160px;
+
+      --font-display: 'Playfair Display', serif;
+      --font-serif:   'Playfair Display', serif;
+      --font-body:    'Poppins', sans-serif;
+    }
+
+    /* ─── RESET ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--brown-deep);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ─── UTILITY ────────────────────────────────────────────────── */
+    .container { max-width: var(--max-w); margin-inline: auto; padding-inline: clamp(20px, 5vw, 60px); }
+    .gold-rule {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: var(--grad-bar);
+      border: none;
+      opacity: 0.9;
+    }
+    .gold-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-block: 14px;
+    }
+    .gold-divider span { flex: 1; height: 1px; background: var(--grad-bar); }
+    .label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-warm);
+    }
+    .serif-heading {
+      font-family: var(--font-serif);
+      line-height: 1.25;
+      color: var(--brown-deep);
+    }
+
+    /* ─── NAV ────────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(245, 240, 232, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200, 150, 44, 0.2);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px clamp(20px, 5vw, 60px);
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    .nav-logo img { height: 52px; width: auto; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--brown-deep);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold-warm); }
+    .nav-cta {
+      padding: 10px 24px;
+      background: var(--grad-gold);
+      color: var(--brown-dark) !important;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      letter-spacing: 0.05em;
+    }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--brown-deep); border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .hamburger span + span { margin-top: 5px; }
+
+    /* ─── HERO ───────────────────────────────────────────────────── */
+    .hero {
+      padding-top: 88px; /* nav height */
+      background: var(--grad-hero);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      padding: clamp(60px,8vw,110px) clamp(20px,5vw,60px) 0;
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    .hero-text { padding-bottom: clamp(40px,6vw,80px); }
+    .hero-text .label { margin-bottom: 18px; display: block; }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 5.5vw, 72px);
+      line-height: 1.0;
+      color: var(--brown-deep);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero-title em { font-style: italic; font-weight: 600; }
+    .hero-sub {
+      font-family: var(--font-serif);
+      font-size: clamp(15px, 1.6vw, 18px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--brown-warm);
+      max-width: 420px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 30px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.25s;
+    }
+    .btn-primary {
+      background: var(--grad-gold);
+      color: var(--brown-dark);
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--brown-deep);
+      color: var(--brown-deep);
+    }
+    .btn-secondary:hover { background: var(--brown-deep); color: var(--cream); transform: translateY(-2px); }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+    .hero-img-frame {
+      width: 100%;
+      max-width: 500px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-img-bg {
+      width: 100%;
+      height: auto; /* Let height be determined by aspect ratio */
+      object-fit: cover;
+      display: block;
+      /* A gentle fade at the bottom to blend into the page */
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        black 70%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    }
+
+    /* floating trust badge on hero */
+    .hero-badge {
+      position: absolute;
+      bottom: 32px;
+      left: -20px;
+      background: var(--ivory);
+      border: 2px solid var(--gold-warm);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 32px rgba(59,35,20,0.12);
+      max-width: 200px;
+    }
+    .hero-badge-icon {
+      width: 40px; height: 40px;
+      background: var(--grad-gold);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      color: var(--brown-dark);
+      flex-shrink: 0;
+      padding-bottom: 2px; /* optical adjustment */
+    }
+    .hero-badge-text strong { display: block; font-size: 13px; color: var(--brown-deep); line-height: 1.2; }
+    .hero-badge-text span { font-size: 11px; color: var(--brown-warm); }
+
+    /* curved gold band at bottom of hero */
+    .hero-wave {
+      display: block;
+      width: 100%;
+      height: 60px;
+      background: transparent;
+      position: relative;
+      margin-top: 0;
+    }
+    .hero-wave svg { position: absolute; bottom: 0; width: 100%; }
+
+    /* ─── GOLD BAND ──────────────────────────────────────────────── */
+    .gold-band {
+      background: var(--grad-brown);
+      padding: 28px clamp(20px,5vw,60px);
+      position: relative;
+      overflow: hidden;
+    }
+    .gold-band::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--grad-bar);
+    }
+    .gold-band::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--grad-bar);
+    }
+    .gold-band-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .gold-band-stat { text-align: center; }
+    .gold-band-stat strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(26px, 4vw, 44px);
+      background: var(--grad-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+    .gold-band-stat span {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(245,240,232,0.7);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .gold-band-sep { width: 1px; height: 44px; background: rgba(200,150,44,0.35); }
+
+    /* ─── STORY SECTION ──────────────────────────────────────────── */
+    .section-story {
+      padding: var(--section-pad);
+      background: var(--ivory);
+    }
+    .story-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    .story-img-stack {
+      position: relative;
+      height: 480px;
+    }
+    .story-img-main {
+      position: absolute;
+      top: 0; left: 0;
+      width: 78%;
+      height: 88%;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .story-img-main img { width: 100%; height: 100%; object-fit: cover; }
+    .story-img-accent {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 60%;
+      height: 65%;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .story-img-accent img { width: 100%; height: 100%; object-fit: cover; }
+    .story-gold-corner {
+      position: absolute;
+      top: -12px; right: 12px;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+    }
+    .story-gold-corner i { font-size: 28px; color: var(--gold-warm); }
+
+    .story-text .label { margin-bottom: 12px; display: block; }
+    .story-heading {
+      font-size: clamp(26px, 3.2vw, 40px);
+      margin-bottom: 24px;
+    }
+    .story-body {
+      font-size: 15px;
+      color: var(--brown-warm);
+      line-height: 1.85;
+    }
+    .story-body p + p { margin-top: 16px; }
+    .story-quote {
+      margin-top: 28px;
+      padding: 20px 24px;
+      border-left: 3px solid var(--gold-warm);
+      background: rgba(200,150,44,0.06);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+    .story-quote p {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 15px;
+      color: var(--brown-deep);
+    }
+
+    /* ─── MISSION / VISION ───────────────────────────────────────── */
+    .section-mission {
+      padding: var(--section-pad);
+      background: var(--grad-brown);
+      position: relative;
+      overflow: hidden;
+    }
+    .section-mission::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--grad-bar);
+    }
+    /* subtle grain texture overlay */
+    .section-mission::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .mission-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      text-align: center;
+      position: relative; z-index: 1;
+    }
+    .mission-inner .label { color: var(--gold-medium); margin-bottom: 14px; display: block; }
+    .mission-inner > h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(30px, 4.5vw, 58px);
+      color: var(--cream);
+      margin-bottom: 56px;
+      font-weight: 700;
+    }
+    .mission-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .mission-card {
+      background: rgba(245,240,232,0.05);
+      border: 1px solid rgba(200,150,44,0.25);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+    .mission-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--grad-gold);
+    }
+    .mission-card-icon {
+      width: 52px; height: 52px;
+      background: var(--grad-gold);
+      border-radius: 14px;
+      display: grid;
+      place-items: center;      
+      margin-bottom: 20px;
+    }
+    .mission-card-icon i { font-size: 26px; color: var(--brown-dark); }
+    .mission-card h3 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+    .mission-card p {
+      font-size: 14.5px;
+      color: rgba(245,240,232,0.75);
+      line-height: 1.8;
+    }
+
+    /* ─── VALUES ─────────────────────────────────────────────────── */
+    .section-values {
+      padding: var(--section-pad);
+      background: var(--cream);
+    }
+    .values-header {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .values-header .label { margin-bottom: 12px; display: block; }
+    .values-header h2 {
+      font-size: clamp(26px, 3.5vw, 44px);
+      margin-bottom: 16px;
+    }
+    .values-header p {
+      font-size: 16px;
+      color: var(--brown-warm);
+      max-width: 520px;
+      margin-inline: auto;
+    }
+    .values-grid {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .value-card {
+      background: var(--ivory);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      border: 1px solid rgba(59,35,20,0.08);
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .value-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--grad-gold);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+      transform-origin: left;
+    }
+    .value-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(59,35,20,0.10); }
+    .value-card:hover::after { transform: scaleX(1); }
+    .value-icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, rgba(200,150,44,0.12), rgba(200,150,44,0.22));
+      border-radius: 16px;
+      display: grid;
+      place-items: center;      
+      margin-bottom: 18px;
+      border: 1px solid rgba(200,150,44,0.3);
+    }
+    .value-icon i { font-size: 28px; color: var(--gold-warm); }
+    .value-card h3 {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      color: var(--brown-deep);
+      margin-bottom: 10px;
+    }
+    .value-card p { font-size: 14px; color: var(--brown-warm); line-height: 1.75; }
+
+    /* ─── TRUST PILLARS ──────────────────────────────────────────── */
+    .section-trust {
+      padding: var(--section-pad);
+      background: var(--ivory);
+      position: relative;
+    }
+    .trust-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    .trust-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .trust-header .label { margin-bottom: 12px; display: block; }
+    .trust-header h2 { font-size: clamp(26px, 3.5vw, 44px); }
+
+    .trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .trust-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 28px 24px;
+      background: var(--ivory);
+      border: 2px solid rgba(200,150,44,0.25);
+      border-radius: var(--radius-lg);
+      min-width: 150px;
+      max-width: 200px;
+      flex: 1;
+      transition: border-color 0.25s, transform 0.25s;
+      text-align: center;
+    }
+    .trust-badge:hover { border-color: var(--gold-warm); transform: translateY(-4px); }
+    .trust-badge-ring {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: var(--grad-gold);
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+    .trust-badge-ring i { font-size: 32px; color: var(--brown-dark); }
+    .trust-badge-ring::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid rgba(200,150,44,0.35);
+    }
+    .trust-badge strong {
+      font-family: var(--font-serif);
+      font-size: 14px;
+      color: var(--brown-deep);
+      line-height: 1.35;
+    }
+    .trust-badge span {
+      font-size: 12px;
+      color: var(--brown-warm);
+    }
+
+    /* ─── PRODUCT PHILOSOPHY ─────────────────────────────────────── */
+    .section-products {
+      padding: var(--section-pad);
+      background: var(--cream);
+    }
+    .products-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    .products-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .products-header .label { display: block; margin-bottom: 12px; }
+    .products-header h2 { font-size: clamp(26px, 3.5vw, 44px); margin-bottom: 16px; }
+    .products-header p { font-size: 16px; color: var(--brown-warm); max-width: 580px; margin-inline: auto; }
+
+    .products-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+    .product-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--ivory);
+      border: 1px solid rgba(59,35,20,0.07);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 56px rgba(59,35,20,0.12); }
+    .product-card-img {
+      height: 220px;
+      background: var(--cream);
+      overflow: hidden;
+      position: relative;
+    }
+    .product-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .product-card:hover .product-card-img img { transform: scale(1.04); }
+    .product-card-img .pc-badge {
+      position: absolute;
+      top: 14px; right: 14px;
+      background: var(--grad-gold);
+      color: var(--brown-dark);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+    }
+    .product-card-body { padding: 24px 22px 28px; }
+    .product-card-body h3 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      color: var(--brown-deep);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .product-card-body p { font-size: 13.5px; color: var(--brown-warm); line-height: 1.7; margin-bottom: 14px; }
+    .product-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .product-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(200,150,44,0.4);
+      color: var(--gold-warm);
+      background: rgba(200,150,44,0.06);
+    }
+    .product-card-img--placeholder {
+      display: grid;
+      place-items: center;
+      background: var(--cream);
+    }
+    .product-card-img--placeholder img {
+      height: 130px; width: auto; object-fit: contain;
+    }
+
+
+    /* ─── HERITAGE ───────────────────────────────────────────────── */
+    .section-heritage {
+      padding: var(--section-pad);
+      background: var(--grad-brown);
+      position: relative;
+      overflow: hidden;
+    }
+    .section-heritage::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--grad-bar);
+    }
+    .section-heritage::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--grad-bar);
+    }
+    .heritage-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative; z-index: 1;
+    }
+    .heritage-text .label { color: var(--gold-medium); margin-bottom: 14px; display: block; }
+    .heritage-text h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 4vw, 50px);
+      color: var(--cream);
+      line-height: 1.0;
+      margin-bottom: 24px;
+      font-weight: 700;
+
+    }
+    .heritage-text h2 em {
+      font-style: normal;
+      background: var(--grad-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .heritage-text p {
+      font-size: 15px;
+      color: rgba(245,240,232,0.8);
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+    .heritage-facts {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .heritage-fact {
+      background: rgba(245,240,232,0.06);
+      border: 1px solid rgba(200,150,44,0.2);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+    }
+    .heritage-fact strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 26px;
+      background: var(--grad-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .heritage-fact span { font-size: 12px; color: rgba(245,240,232,0.65); letter-spacing: 0.06em; text-transform: uppercase; }
+
+    .heritage-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 12px;
+    }
+    .heritage-img {
+      border-radius: var(--radius-md);
+      overflow: hidden; border: 3px solid rgba(200,150,44,0.3);
+    }
+    .heritage-img img { width: 100%; height: 100%; object-fit: cover; }
+    .heritage-img:nth-child(1) { grid-row: span 2; height: 340px; border: 3px solid rgba(200,150,44,0.3); }
+    .heritage-img:nth-child(2) { height: 160px; }
+    .heritage-img:nth-child(3) { height: 160px; }
+    .heritage-img--placeholder {
+      display: grid; place-items: center; background: rgba(245,240,232,0.08);
+    }
+    .heritage-img--placeholder img {
+      height: 90px; width: auto; object-fit: contain;
+    }
+
+    /* ─── FINAL CTA ───────────────────────────────────────────────── */
+    .section-cta {
+      padding: var(--section-pad);
+      background: var(--cream);
+      text-align: center;
+    }
+    .cta-inner {
+      max-width: 720px;
+      margin-inline: auto;
+    }
+    .cta-inner .label { margin-bottom: 14px; display: block; }
+    .cta-inner h2 {
+      font-size: clamp(28px, 4.5vw, 54px);
+      margin-bottom: 18px;
+    }
+    .cta-inner p {
+      font-size: 16px;
+      color: var(--brown-warm);
+      max-width: 480px;
+      margin-inline: auto;
+      margin-bottom: 36px;
+    }
+    .cta-actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────── */
+    footer {
+      background: var(--brown-dark);
+      padding: 48px clamp(20px,5vw,60px) 28px;
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--grad-bar);
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(200,150,44,0.15);
+    }
+    .footer-brand img { height: 56px; width: auto; margin-bottom: 16px; }
+    .footer-brand p { font-size: 13.5px; color: rgba(245,240,232,0.6); line-height: 1.75; max-width: 280px; }
+    .footer-col h4 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-warm);
+      margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 13.5px;
+      color: rgba(245,240,232,0.65);
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--cream); }
+    .footer-bottom {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p { font-size: 12px; color: rgba(245,240,232,0.4); }
+    .footer-bottom span {
+      font-size: 12px;
+      color: rgba(200,150,44,0.7);
+    }
+
+    /* ─── SCROLL REVEAL ──────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        transition: none;
+      }
+    }
+
+    /* ─── MOBILE MENU ────────────────────────────────────────────── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      background: var(--ivory);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 22px;
+      font-family: var(--font-serif);
+      color: var(--brown-deep);
+    }
+    .mobile-close {
+      position: absolute;
+      top: 22px; right: 24px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--brown-deep);
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .story-inner { grid-template-columns: 1fr; }
+      .story-img-stack { height: 320px; margin-bottom: 16px; }
+      .mission-cards { grid-template-columns: 1fr; }
+      .values-grid, .products-list { grid-template-columns: 1fr 1fr; }
+      .products-list { grid-template-columns: 1fr 1fr; }
+      .heritage-inner { grid-template-columns: 1fr; }
+      .heritage-visual { display: none; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .gold-band-sep { display: none; }
+    }
+    @media (max-width: 600px) {
+      .values-grid { grid-template-columns: 1fr; }
+      .products-list { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .trust-badges { flex-direction: column; align-items: center; }
+      .trust-badge { max-width: 300px; width: 100%; }
+      .heritage-facts { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="GoldenSprout Naturals Home">
+        <img src="./logo/gsprout original@2x.png" alt="GoldenSprout Naturals" />
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#values">Our Values</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#heritage">Heritage</a></li>
+        <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Open menu" aria-expanded="false" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+    <a href="#story" class="mobile-link">Our Story</a>
+    <a href="#values" class="mobile-link">Our Values</a>
+    <a href="#products" class="mobile-link">Products</a>
+    <a href="#heritage" class="mobile-link">Heritage</a>
+    <a href="#contact" class="mobile-link">Contact Us</a>
+  </div>
+
+  <main>
+    <!-- ─── HERO ─────────────────────────────────────────────────── -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <span class="label reveal">Proudly Nigerian · Est. Jos, Plateau State</span>
+          <h1 class="hero-title serif-heading reveal reveal-delay-1" id="hero-heading">
+            Food the way<br /><em>nature</em><br />intended
+          </h1>
+          <p class="hero-sub reveal reveal-delay-2">
+            We grow, select, and process Nigeria's finest grain crops into wholesome food your family can trust — no chemicals, no preservatives, and no compromise.
+          </p>
+          <div class="hero-actions reveal reveal-delay-3">
+            <a href="#products" class="btn btn-primary">Explore Our Products</a>
+            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal reveal-delay-2" aria-hidden="true">
+          <div class="hero-img-frame">
+            <!-- Background Image -->
+            <img class="hero-img-bg"
+              src="./products combined (3).png"
+              alt="A collection of GoldenSprout Naturals products"
+              loading="eager"
+            />
+            <div class="hero-badge">
+              <div class="hero-badge-icon" aria-hidden="true"><i class="fa-solid fa-wheat-awn"></i></div>
+              <div class="hero-badge-text">
+                <strong>100% Natural</strong>
+                <span>No additives. Ever.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- curved wave to next section -->
+      <div class="hero-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" fill="#3B2314" opacity="0.07" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- ─── STATS BAND ─────────────────────────────────────────────── -->
+    <div class="gold-band" aria-label="Brand highlights">
+      <div class="gold-band-inner">
+        <div class="gold-band-stat">
+          <strong>100%</strong>
+          <span>Whole grain, always</span>
+        </div>
+        <div class="gold-band-sep" aria-hidden="true"></div>
+        <div class="gold-band-stat">
+          <strong>0</strong>
+          <span>Preservatives or chemicals</span>
+        </div>
+        <div class="gold-band-sep" aria-hidden="true"></div>
+        <div class="gold-band-stat">
+          <strong>Jos</strong>
+          <span>Plateau State, Nigeria</span>
+        </div>
+        <div class="gold-band-sep" aria-hidden="true"></div>
+        <div class="gold-band-stat">
+          <strong>3+</strong>
+          <span>Nutritious product lines</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── BRAND STORY ─────────────────────────────────────────────── -->
+    <section class="section-story" id="story" aria-labelledby="story-heading">
+      <div class="story-inner">
+        <div class="story-img-stack reveal" aria-hidden="true">
+          <div class="story-img-main">
+            <img
+              src="./tombrown.jpeg"
+              alt="A bowl of nutritious GoldenSprout Tombrown Supreme cereal"
+              loading="lazy"
+            />
+          </div>
+          <div class="story-img-accent">
+            <img
+              src="./man.png"
+              alt="The founder of GoldenSprout Naturals"
+              loading="lazy"
+            />
+          </div>
+          <div class="story-gold-corner" aria-hidden="true"><i class="fa-solid fa-sprout"></i></div>
+        </div>
+
+        <div class="story-text reveal">
+          <span class="label reveal">How It Started</span>
+          <h2 class="serif-heading story-heading reveal reveal-delay-1" id="story-heading">
+            A personal journey that became a family mission
+          </h2>
+          <div class="story-body reveal reveal-delay-2">
+            <p>
+              GoldenSprout Naturals was born from a simple but powerful question: why is it so hard to find clean, genuinely nutritious food for our families? Our founders, based in Jos, Plateau State, began exploring Nigeria's rich agricultural heritage in search of whole foods that nourished without compromise.
+            </p>
+            <p>
+              What they found was extraordinary. Nigeria's soils produce some of the world's most nutritious grain crops — finger millet, sorghum, millet, and more — yet most families never benefit from them in their natural state. Processed, adulterated, or simply overlooked.
+            </p>
+            <p>
+              GoldenSprout Naturals was built to change that. We source directly from Nigerian farmers, process with care, and bring whole-grain goodness to tables across the country and diaspora — with no chemicals, no preservatives, and no shortcuts.
+            </p>
+            <div class="story-quote">
+              <p>"We believe good food is the foundation of a healthy family. Every product we make is something we feed our own children first."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── MISSION & VISION ───────────────────────────────────────── -->
+    <section class="section-mission" aria-labelledby="mission-heading">
+      <div class="mission-inner">
+        <span class="label">What Drives Us</span>
+        <h2 class="reveal" id="mission-heading">Purpose. Promise. Progress.</h2>
+        <div class="mission-cards">
+          <article class="mission-card reveal reveal-delay-1">
+            <div class="mission-card-icon" aria-hidden="true"><i class="fa-solid fa-bullseye"></i></div>
+            <h3>Our Mission</h3>
+            <p>
+              To nourish Nigerian families with affordable, high-quality, 100% natural grain-based products — so that eating well is never a privilege, but a right every household can access.
+            </p>
+          </article>
+          <article class="mission-card reveal reveal-delay-2">
+            <div class="mission-card-icon" aria-hidden="true"><i class="fa-solid fa-star"></i></div>
+            <h3>Our Vision</h3>
+            <p>
+              To become Nigeria's most trusted healthy food brand — a name that stands for integrity, quality, and care in every home it enters, from Lagos to London and beyond.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── VALUES ─────────────────────────────────────────────────── -->
+    <section class="section-values" id="values" aria-labelledby="values-heading">
+      <div class="values-header">
+        <span class="label reveal">Our Principles</span>
+        <h2 class="serif-heading reveal reveal-delay-1" id="values-heading">What we stand for, in every batch</h2>
+        <p class="reveal reveal-delay-2">These are not marketing promises. They are the non-negotiable standards we hold ourselves to each and every day.</p>
+      </div>
+      <div class="values-grid">
+        <article class="value-card reveal">
+          <div class="value-icon" aria-hidden="true"><i class="fa-solid fa-leaf"></i></div>
+          <h3>Nothing Artificial. Ever.</h3>
+          <p>Every product we make is free from artificial preservatives, colourings, and flavour enhancers. If nature didn't put it there, neither do we.</p>
+        </article>
+        <article class="value-card reveal reveal-delay-1">
+          <div class="value-icon" aria-hidden="true"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+          <h3>Affordable Nutrition</h3>
+          <p>Healthy eating should not be a luxury. We work hard to keep our products accessible to everyday Nigerian families without cutting corners on quality.</p>
+        </article>
+        <article class="value-card reveal reveal-delay-2">
+          <div class="value-icon" aria-hidden="true"><i class="fa-solid fa-handshake-simple"></i></div>
+          <h3>Trust Through Transparency</h3>
+          <p>We are open about what goes into our products, where our grains come from, and how we process them. What you see is exactly what you get.</p>
+        </article>
+        <article class="value-card reveal">
+          <div class="value-icon" aria-hidden="true"><i class="fa-solid fa-users"></i></div>
+          <h3>Made for Families</h3>
+          <p>From babies taking their first foods to grandparents managing their health, our products are formulated to nourish every generation at the table.</p>
+        </article>
+        <article class="value-card reveal reveal-delay-1">
+          <div class="value-icon" aria-hidden="true"><i class="fa-solid fa-map-location-dot"></i></div>
+          <h3>Proudly Nigerian</h3>
+          <p>We celebrate Nigeria's agricultural richness. Our grains are locally sourced, our team is local, and our commitment to this land runs deep.</p>
+        </article>
+        <article class="value-card reveal reveal-delay-2">
+          <div class="value-icon" aria-hidden="true"><i class="fa-solid fa-shield-heart"></i></div>
+          <h3>Careful Processing</h3>
+          <p>Every step — from sorting to milling to packaging — is done with precision and care to preserve maximum nutritional value and natural flavour.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ─── TRUST PILLARS ──────────────────────────────────────────── -->
+    <section class="section-trust" aria-labelledby="trust-heading">
+      <div class="trust-inner">
+        <div class="trust-header">
+          <span class="label reveal">Why Families Choose Us</span>
+          <h2 class="serif-heading reveal reveal-delay-1" id="trust-heading">Five reasons to trust GoldenSprout</h2>
+        </div>
+        <div class="trust-badges" role="list">
+          <div class="trust-badge reveal" role="listitem">
+            <div class="trust-badge-ring" aria-hidden="true"><i class="fa-solid fa-seedling"></i></div>
+            <strong>100% Natural Ingredients</strong>
+            <span>Straight from Nigerian farms to your table</span>
+          </div>
+          <div class="trust-badge reveal reveal-delay-1" role="listitem">
+            <div class="trust-badge-ring" aria-hidden="true"><i class="fa-solid fa-bolt"></i></div>
+            <strong>Nutritionally Rich</strong>
+            <span>High in fibre, protein &amp; natural energy</span>
+          </div>
+          <div class="trust-badge reveal reveal-delay-2" role="listitem">
+            <div class="trust-badge-ring" aria-hidden="true"><i class="fa-solid fa-microscope"></i></div>
+            <strong>Carefully Processed</strong>
+            <span>Handled to retain maximum goodness</span>
+          </div>
+          <div class="trust-badge reveal reveal-delay-3" role="listitem">
+            <div class="trust-badge-ring" aria-hidden="true"><i class="fa-solid fa-baby"></i></div>
+            <strong>Family Safe</strong>
+            <span>Babies, toddlers, adults — all welcome</span>
+          </div>
+          <div class="trust-badge reveal reveal-delay-4" role="listitem">
+            <div class="trust-badge-ring" aria-hidden="true"><i class="fa-solid fa-flag-checkered"></i></div>
+            <strong>Proudly Nigerian</strong>
+            <span>Supporting local agriculture &amp; farmers</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── PRODUCT PHILOSOPHY ─────────────────────────────────────── -->
+    <section class="section-products" id="products" aria-labelledby="products-heading">
+      <div class="products-inner">
+        <div class="products-header">
+          <span class="label reveal">What We Make</span>
+          <h2 class="serif-heading reveal reveal-delay-1" id="products-heading">Good grains, honestly made</h2>
+          <p class="reveal reveal-delay-2">
+            Our product range draws on Nigeria's finest grain heritage — each one crafted to be as nutritious and wholesome as the land it came from.
+          </p>
+        </div>
+        <div class="products-list">
+          <article class="product-card reveal">
+            <div class="product-card-img">
+              <img
+                src="./tamba-white bg.png"
+                alt="GoldenSprout Naturals Finger Millet (Tamba) product pack"
+                loading="lazy"
+              />
+              <span class="pc-badge">Grain</span>
+            </div>
+            <div class="product-card-body">
+              <h3>Finger Millet (Tamba)</h3>
+              <p>An ancient Nigerian grain, rich in calcium and iron. Our Tamba is stone-cleaned, carefully milled, and packaged without additives to preserve every nutrient.</p>
+              <div class="product-tags">
+                <span class="product-tag">High Calcium</span>
+                <span class="product-tag">Iron-rich</span>
+                <span class="product-tag">Heart Health</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card reveal reveal-delay-1">
+            <div class="product-card-img">
+              <img
+                src="./tom-brown-white bg.png"
+                alt="GoldenSprout Naturals Tombrown Supreme product pack"
+                loading="lazy"
+              />
+              <span class="pc-badge">Cereal Mix</span>
+            </div>
+            <div class="product-card-body">
+              <h3>Tombrown Supreme</h3>
+              <p>A 100% whole-grains cereal blend, perfect for babies starting solids and adults seeking a nutritious, filling breakfast. Warm, satisfying, and completely natural.</p>
+              <div class="product-tags">
+                <span class="product-tag">High Protein</span>
+                <span class="product-tag">High Fibre</span>
+                <span class="product-tag">All Ages</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card reveal reveal-delay-2">
+            <div class="product-card-img">
+              <img
+                src="./sweet potatoes-white bg.png"
+                alt="GoldenSprout Naturals Sweet Potato Flour product pack"
+                loading="lazy"
+              />
+              <span class="pc-badge">Flour</span>
+            </div>
+            <div class="product-card-body">
+              <h3>Sweet Potato Flour</h3>
+              <p>Slow-dried and stone-milled from premium Nigerian sweet potatoes. Naturally gluten-light, rich in beta-carotene, and wonderfully versatile in the kitchen.</p>
+              <div class="product-tags">
+                <span class="product-tag">Gluten-light</span>
+                <span class="product-tag">Beta-carotene</span>
+                <span class="product-tag">Versatile</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card reveal reveal-delay-3">
+            <div class="product-card-img">
+              <img src="./acha-white bg.png" alt="GoldenSprout Naturals Acha (Fonio) product pack" loading="lazy" />
+              <span class="pc-badge">Grain</span>
+            </div>
+            <div class="product-card-body">
+              <h3>Acha (Fonio)</h3>
+              <p>A tiny, ancient super-grain from the Plateau, Acha is gluten-free and packed with amino acids. A light, fluffy, and nutritious alternative to couscous or rice.</p>
+              <div class="product-tags">
+                <span class="product-tag">Gluten-Free</span>
+                <span class="product-tag">Super-grain</span>
+                <span class="product-tag">Diabetic-Friendly</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── HERITAGE ───────────────────────────────────────────────── -->
+    <section class="section-heritage" id="heritage" aria-labelledby="heritage-heading">
+      <div class="heritage-inner">
+        <div class="heritage-text">
+          <span class="label">Nigerian Agricultural Roots</span>
+          <h2 class="serif-heading reveal" id="heritage-heading">
+            Rooted in<br /><em>Nigerian</em><br />soil
+          </h2>
+          <p class="reveal reveal-delay-1">
+            Nigeria is among the world's most agriculturally rich nations — home to crops that have sustained communities for generations. Finger millet, sorghum, millet, and tubers grown in Plateau State's fertile highlands are among the most nutritious foods on earth.
+          </p>
+          <p class="reveal reveal-delay-1">
+            At GoldenSprout, we see ourselves as custodians of this heritage. We work with local farmers, support Nigerian agriculture, and ensure that the goodness grown in our soils stays within reach of the families who need it most.
+          </p>
+          <div class="heritage-facts reveal reveal-delay-2">
+            <div class="heritage-fact">
+              <strong>Jos</strong>
+              <span>Plateau State base</span>
+            </div>
+            <div class="heritage-fact">
+              <strong>100%</strong>
+              <span>Locally sourced grains</span>
+            </div>
+            <div class="heritage-fact">
+              <strong>Farm</strong>
+              <span>To family, directly</span>
+            </div>
+            <div class="heritage-fact">
+              <strong>Zero</strong>
+              <span>Chemical inputs used</span>
+            </div>
+          </div>
+        </div>
+        <div class="heritage-visual reveal reveal-delay-2" aria-hidden="true">
+          <div class="heritage-img">
+            <img src="./green-farm-land.png" alt="Lush green farmland in Plateau State, Nigeria" loading="lazy" />
+          </div>
+          <div class="heritage-img">
+            <img src="./acha.png" alt="Close-up of Acha (Fonio) grains being harvested" loading="lazy" />
+          </div>
+          <div class="heritage-img">
+            <img src="./fingermillet-crop-image-1.jpg" alt="A field of finger millet growing under the sun" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FINAL CTA ──────────────────────────────────────────────── -->
+    <section class="section-cta" id="contact" aria-labelledby="cta-heading">
+      <div class="cta-inner">
+        <span class="label reveal">Let's Connect</span>
+        <h2 class="serif-heading reveal reveal-delay-1" id="cta-heading">
+          Ready to bring GoldenSprout to your table?
+        </h2>
+        <p class="reveal reveal-delay-2">
+          Whether you are a health-conscious household, a retail partner, or part of our diaspora family — we would love to hear from you.
+        </p>
+        <div class="cta-actions reveal reveal-delay-3">
+          <a href="https://www.goldensproutnaturals.com" target="_blank" rel="noopener" class="btn btn-primary">Shop GoldenSprout Products</a>
+          <a href="tel:+2349058739375" class="btn btn-secondary">Become a Stockist</a>
+        </div>
+        <div class="reveal reveal-delay-4" style="margin-top:32px; display:flex; align-items:center; gap:24px; justify-content:center; flex-wrap:wrap;">
+          <a href="tel:+2349058739375" style="font-size:13px;color:var(--brown-warm); display:inline-flex; align-items:center; gap: 6px;"><i class="fa-solid fa-phone-volume"></i> +234 905 873 9375</a>
+          <a href="tel:+2349025424245" style="font-size:13px;color:var(--brown-warm); display:inline-flex; align-items:center; gap: 6px;"><i class="fa-solid fa-phone-volume"></i> +234 902 542 4245</a>
+          <a href="https://instagram.com/goldensproutnaturals" target="_blank" rel="noopener" style="font-size:13px;color:var(--brown-warm); display:inline-flex; align-items:center; gap: 6px;"><i class="fa-brands fa-instagram"></i> @goldensproutnaturals</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ─── FOOTER ──────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="./logo/gsprout white@2x.png" alt="GoldenSprout Naturals" />
+        <p>Clean, natural, nutritious grain-based products from the heart of Nigeria's Plateau State. Nourishing families, one wholesome meal at a time.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#story">Our Story</a>
+        <a href="#values">Our Values</a>
+        <a href="#heritage">Nigerian Heritage</a>
+        <a href="#products">Our Products</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:+2349058739375">+234 905 873 9375</a>
+        <a href="tel:+2349025424245">+234 902 542 4245</a>
+        <a href="https://instagram.com/goldensproutnaturals" target="_blank" rel="noopener">@goldensproutnaturals</a>
+        <a href="https://www.goldensproutnaturals.com" target="_blank" rel="noopener">goldensproutnaturals.com</a>
+        <p style="font-size:12px;color:rgba(245,240,232,0.4);margin-top:10px;">Haske Quarters, Jos, Plateau State</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 GoldenSprout Naturals Ltd. All rights reserved.</p>
+      <span>Healthy Choices. A Healthier You.</span>
+    </div>
+  </footer>
+
+  <script>
+    // ─── Scroll Reveal ───────────────────────────────────────────
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    if (!prefersReducedMotion.matches) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
+
+    // ─── Mobile Menu ─────────────────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    const firstFocusableEl = mobileClose;
+    const lastFocusableEl = mobileLinks[mobileLinks.length - 1];
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      firstFocusableEl.focus(); // Move focus to the close button
+    });
+
+    const closeMenu = () => {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      hamburger.focus(); // Return focus to the hamburger button
+    };
+
+    mobileClose.addEventListener('click', closeMenu);
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Keyboard navigation enhancements
+    mobileMenu.addEventListener('keydown', (e) => {
+      // Close on Escape key
+      if (e.key === 'Escape') {
+        closeMenu();
+      }
+
+      // Focus trap
+      if (e.key === 'Tab') {
+        if (e.shiftKey) { // Shift + Tab
+          if (document.activeElement === firstFocusableEl) {
+            lastFocusableEl.focus();
+            e.preventDefault();
+          }
+        } else { // Tab
+          if (document.activeElement === lastFocusableEl) {
+            firstFocusableEl.focus();
+            e.preventDefault();
+          }
+        }
+      }
+    });
+
+    // ─── Nav shadow on scroll ─────────────────────────────────────
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.style.boxShadow = window.scrollY > 10
+        ? '0 4px 24px rgba(59,35,20,0.10)'
+        : 'none';
+    }, { passive: true });
+  </script>
+</body>
+</html>
